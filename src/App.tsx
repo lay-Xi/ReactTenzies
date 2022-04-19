@@ -1,6 +1,17 @@
 import Die from './components/Die';
 
 export default function App() {
+
+  const allNewDice: Function = () => {
+    let randomNumbers = [];
+
+    for (let i = 0; i < 10; i++) {
+      randomNumbers.push(Math.floor((Math.random() * 5) + 1));
+    }
+    
+    return randomNumbers;
+  }
+
   return (
     <main>
       <div className='dice--container'>
