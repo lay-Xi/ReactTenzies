@@ -4,4 +4,13 @@
 
 body {
   margin: 0;
+  background: #0b2434;
+  padding: 10%;
+}
+
+main {
+  position: absolute;
+  background: #f5f5f5;
+  padding: 70% 40%;
+  border-radius: 20px;
 }
