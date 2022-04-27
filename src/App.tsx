@@ -28,12 +28,12 @@ export default function App() {
   const rollDice = () => {
     setDices(allNewDice());
   }
-  
+
   return (
     <main>
       <div className='dice--container'>
         {dices.map((dice: DiceObj) => {
-          return <Die key={dice.id} value={dice.value} />;
+          return <Die key={dice.id} isHeld={dice.isHeld} value={dice.value} />;
         })}
       </div>
       <button className='roll-dice' onClick={rollDice}>Roll</button>
