@@ -3,9 +3,9 @@ import Die from './components/Die';
 import { nanoid } from 'nanoid';
 
 interface DiceObj {
-  id: string,
-  value: number,
-  isHeld: boolean
+  id: string;
+  value: number;
+  isHeld: boolean;
 }
 
 export default function App() {
@@ -16,7 +16,7 @@ export default function App() {
       dices.push({
         id: nanoid(),
         value: Math.floor(Math.random() * 5 + 1),
-        isHeld: false
+        isHeld: false,
       });
     }
 
@@ -27,16 +27,29 @@ export default function App() {
 
   const rollDice = () => {
     setDices(allNewDice());
-  }
+  };
+
+  const holdDice = (id: string) => {
+    console.log(id);
+  };
 
   return (
     <main>
       <div className='dice--container'>
         {dices.map((dice: DiceObj) => {
-          return <Die key={dice.id} isHeld={dice.isHeld} value={dice.value} />;
+          return (
+            <Die
+              key={dice.id}
+              isHeld={dice.isHeld}
+              value={dice.value}
+              holdDie={() => holdDice(dice.id)}
+            />
+          );
         })}
       </div>
-      <button className='roll-dice' onClick={rollDice}>Roll</button>
+      <button className='roll-dice' onClick={rollDice}>
+        Roll
+      </button>
     </main>
   );
 }
