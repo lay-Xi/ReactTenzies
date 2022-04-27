@@ -9,15 +9,19 @@ interface DiceObj {
 }
 
 export default function App() {
+  const generateNewDie = () => {
+    return {
+      id: nanoid(),
+      value: Math.floor(Math.random() * 5 + 1),
+      isHeld: false,
+    };
+  };
+
   const allNewDice = () => {
     let dices = [];
 
     for (let i = 0; i < 10; i++) {
-      dices.push({
-        id: nanoid(),
-        value: Math.floor(Math.random() * 5 + 1),
-        isHeld: false,
-      });
+      dices.push(generateNewDie());
     }
 
     return dices;
@@ -26,11 +30,15 @@ export default function App() {
   const [dices, setDices] = useState(allNewDice());
 
   const rollDice = () => {
-    setDices(allNewDice());
+    setDices((prev) =>
+      prev.map((die) => (die.isHeld ? die : generateNewDie()))
+    );
   };
 
   const holdDice = (id: string) => {
-    console.log(id);
+    setDices((prev) =>
+      prev.map((die) => (die.id === id ? { ...die, isHeld: !die.isHeld } : die))
+    );
   };
 
   return (
